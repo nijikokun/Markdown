@@ -716,7 +716,7 @@ class Markdown {
 		$whole_match = $matches[1];
 		$link_text = $this->runSpanGamut($matches[2]);
 		$url = $matches[3] == '' ? $matches[4] : $matches[3];
-		$title = & $matches[7];
+		$title =& $matches[7];
 		$url = $this->encodeAttribute($url);
 		$result = "<a href=\"$url\"";
 
@@ -761,13 +761,13 @@ class Markdown {
 			  !\[
 				(' . $this->nested_brackets_re . ')
 			  \]
-			  \s?
+			  (\s)?
 			  \(
 				[ \n]*
 				(?:
-					<(\S*)>
+					<\S?>
 				|
-					(' . $this->nested_url_parenthesis_re . ')\
+					(' . $this->nested_url_parenthesis_re . ')
 				)
 				[ \n]*
 				(
@@ -817,7 +817,7 @@ class Markdown {
 	protected function doImages_inline_callback($matches) {
 		$whole_match = $matches[1];
 		$alt_text = $matches[2];
-		$url = $matches[3] == '' ? $matches[4] : $matches[3];
+		$url = $matches[4] == '' ? $matches[5] : $matches[4];
 		$title = & $matches[7];
 		$alt_text = $this->encodeAttribute($alt_text);
 		$url = $this->encodeAttribute($url);
