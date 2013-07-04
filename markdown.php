@@ -595,7 +595,7 @@ class Markdown {
 
 	protected function doHardBreaks($text) {
 		return preg_replace_callback(
-			'/ {2,}\n/',
+			'/ {2,}\n|\\\\\n/',
 			array(&$this, 'doHardBreaks_callback'), 
 			$text
 		);
